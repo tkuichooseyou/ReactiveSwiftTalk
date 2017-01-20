@@ -15,6 +15,7 @@ import ReactiveCocoa
 final class SignupView: UIView {
     private let email = UITextField()
     private let password = UITextField()
+    private let passwordConfirm = UITextField()
     private let signupButton = UIButton()
     private let viewModel = SignupViewModel()
 
@@ -27,6 +28,7 @@ final class SignupView: UIView {
     private func bindViewModel() {
         viewModel.emailTextSignal = email.reactive.continuousTextValues.map { $0 ?? "" }
         viewModel.passwordTextSignal = password.reactive.continuousTextValues.map { $0 ?? "" }
+        viewModel.passwordConfirmTextSignal = passwordConfirm.reactive.continuousTextValues.map { $0 ?? "" }
         signupButton.reactive.isEnabled <~ viewModel.actionButtonEnabledSignal
         signupButton.reactive.backgroundColor <~ viewModel.actionButtonColorSignal
     }
@@ -37,6 +39,7 @@ final class SignupView: UIView {
         sv(
             email.placeholder("Email").style(fieldStyle),
             password.placeholder("Password").style(fieldStyle).style(passwordFieldStyle),
+            passwordConfirm.placeholder("Confirm Password").style(fieldStyle).style(passwordFieldStyle),
             signupButton.text("Sign up").style(buttonStyle).tap(loginTapped)
         )
 
@@ -45,6 +48,8 @@ final class SignupView: UIView {
             |-email-| ~ 80,
             8,
             |-password-| ~ 80,
+            8,
+            |-passwordConfirm-| ~ 80,
             "",
             |signupButton| ~ 80,
             0
