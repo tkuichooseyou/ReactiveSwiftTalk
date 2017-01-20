@@ -1,0 +1,22 @@
+PODS:
+  - ReactiveCocoa (5.0.0):
+    - ReactiveSwift (~> 1.0.0)
+  - ReactiveSwift (1.0.0):
+    - Result (~> 3.1)
+  - Result (3.1.0)
+  - SteviaLayout (3.0.2)
+
+DEPENDENCIES:
+  - ReactiveCocoa (~> 5.0.0)
+  - ReactiveSwift (~> 1.0.0)
+  - SteviaLayout (~> 3.0.2)
+
+SPEC CHECKSUMS:
+  ReactiveCocoa: 60ef0da915b4f70c34ebecc3f4fb8f96af0e53d6
+  ReactiveSwift: f391724ee318a2cfd3e37dfb041cd49ecf4e7869
+  Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
+  SteviaLayout: f4848211592409c29971307fdc741151ebc34b88
+
+PODFILE CHECKSUM: 24f2672d1d2b7f439316ebe77c1edae3521b5894
+
+COCOAPODS: 1.1.1
