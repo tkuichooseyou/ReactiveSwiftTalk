@@ -32,4 +32,7 @@ final class SignupViewModel {
         }
     }()
 
+    lazy private(set) var errorTextSignal: Signal<String, NoError> = { [unowned self] in
+        return Signal.empty
+    }()
 }
