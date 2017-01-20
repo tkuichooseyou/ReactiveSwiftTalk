@@ -35,4 +35,15 @@ final class SignupViewModel {
     lazy private(set) var errorTextSignal: Signal<String, NoError> = { [unowned self] in
         return Signal.empty
     }()
+
+    private lazy var validationResult: Signal<ValidationResult, NoError> = { [unowned self] in
+        let results = [
+            self.emailTextSignal.map(Validator.validateEmail),
+            self.passwordTextSignal.map(Validator.validatePasswordLength),
+            self.passwordTextSignal.combineLatest(with: self.passwordConfirmTextSignal).map(Validator.validatePasswordsMatch)
+        ]
+        return Signal
+            .combineLatest(results)
+            .map { $0.reduce(.valid) { $0.combine($1)} }
+    }()
 }
