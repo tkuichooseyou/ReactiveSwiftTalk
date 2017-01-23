@@ -10,7 +10,7 @@ import Foundation
 
 enum ValidationResult {
     case valid
-    case invalid([Error])
+    case invalid([Validator.Error])
 
     func combine(_ result: ValidationResult) -> ValidationResult {
         switch (self, result) {
@@ -18,6 +18,13 @@ enum ValidationResult {
         case (.invalid(let errors), .valid): return .invalid(errors)
         case (.valid, .invalid(let errors)): return .invalid(errors)
         case (.invalid(let lhsErrors), .invalid(let rhsErrors)): return .invalid(lhsErrors + rhsErrors)
+        }
+    }
+
+    var errorString: String {
+        switch self {
+        case .valid: return ""
+        case let .invalid(errors): return errors.first?.description ?? ""
         }
     }
 

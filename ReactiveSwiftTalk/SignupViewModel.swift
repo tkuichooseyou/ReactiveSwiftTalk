@@ -15,7 +15,7 @@ final class SignupViewModel {
     var passwordTextSignal: Signal<String, NoError> = Signal.empty
     var passwordConfirmTextSignal: Signal<String, NoError> = Signal.empty
 
-    lazy private(set) var actionButtonEnabledSignal: Signal<Bool, NoError> = { [unowned self] in
+    lazy private(set) var buttonEnabledSignal: Signal<Bool, NoError> = { [unowned self] in
         let notEmptySignals: [Signal<Bool, NoError>] = [
             self.emailTextSignal.textIsNotEmpty,
             self.passwordTextSignal.textIsNotEmpty,
@@ -26,17 +26,19 @@ final class SignupViewModel {
             .map { $0.reduce(true) {$0 && $1} }
     }()
 
-    lazy private(set) var actionButtonColorSignal: Signal<UIColor, NoError> = { [unowned self] in
-        return self.actionButtonEnabledSignal.map { (enabled: Bool) -> UIColor in
+    lazy private(set) var buttonColorSignal: Signal<UIColor, NoError> = { [unowned self] in
+        return self.buttonEnabledSignal.map { (enabled: Bool) -> UIColor in
             return (enabled ? .blue : .lightGray)
         }
     }()
 
     lazy private(set) var errorTextSignal: Signal<String, NoError> = { [unowned self] in
-        return Signal.empty
+        self.buttonEnabledSignal.combineLatest(with: self.validationResultSignal).map { (buttonEnabled, validationResult) in
+            return (buttonEnabled ? validationResult.errorString : "")
+        }
     }()
 
-    private lazy var validationResult: Signal<ValidationResult, NoError> = { [unowned self] in
+    private lazy var validationResultSignal: Signal<ValidationResult, NoError> = { [unowned self] in
         let results = [
             self.emailTextSignal.map(Validator.validateEmail),
             self.passwordTextSignal.map(Validator.validatePasswordLength),

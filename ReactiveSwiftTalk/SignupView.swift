@@ -30,8 +30,9 @@ final class SignupView: UIView {
         viewModel.emailTextSignal = email.reactive.continuousTextValues.map { $0 ?? "" }
         viewModel.passwordTextSignal = password.reactive.continuousTextValues.map { $0 ?? "" }
         viewModel.passwordConfirmTextSignal = passwordConfirm.reactive.continuousTextValues.map { $0 ?? "" }
-        signupButton.reactive.isEnabled <~ viewModel.actionButtonEnabledSignal
-        signupButton.reactive.backgroundColor <~ viewModel.actionButtonColorSignal
+        errorLabel.reactive.text <~ viewModel.errorTextSignal
+        signupButton.reactive.isEnabled <~ viewModel.buttonEnabledSignal
+        signupButton.reactive.backgroundColor <~ viewModel.buttonColorSignal
     }
 
     private func render() {
@@ -88,5 +89,6 @@ final class SignupView: UIView {
 
     func injected() {
         render()
+        bindViewModel()
     }
 }
