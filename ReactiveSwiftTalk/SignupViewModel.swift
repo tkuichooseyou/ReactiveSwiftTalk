@@ -16,7 +16,7 @@ final class SignupViewModel {
     var passwordConfirmTextSignal: Signal<String, NoError> = Signal.empty
 
     lazy private(set) var buttonEnabledSignal: Signal<Bool, NoError> = { [unowned self] in
-        let notEmptySignals: [Signal<Bool, NoError>] = [
+        let notEmptySignals = [
             self.emailTextSignal.textIsNotEmpty,
             self.passwordTextSignal.textIsNotEmpty,
             self.passwordConfirmTextSignal.textIsNotEmpty
