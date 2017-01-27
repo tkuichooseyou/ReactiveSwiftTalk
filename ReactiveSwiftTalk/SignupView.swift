@@ -18,7 +18,7 @@ final class SignupView: UIView {
     private let passwordConfirm = UITextField()
     private let errorLabel = UILabel()
     private let signupButton = UIButton()
-    private let viewModel = SignupViewModel()
+    let viewModel = SignupViewModel()
 
     convenience init() {
         self.init(frame: .zero)
@@ -60,7 +60,6 @@ final class SignupView: UIView {
             |signupButton| ~ 80,
             0
         )
-
     }
 
     private func fieldStyle(f: UITextField) {

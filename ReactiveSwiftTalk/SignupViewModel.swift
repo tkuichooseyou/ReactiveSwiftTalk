@@ -14,6 +14,7 @@ final class SignupViewModel {
     let email = MutableProperty("")
     let password = MutableProperty("")
     let passwordConfirm = MutableProperty("")
+    let (alertSignal, alertObserver) = Signal<String, NoError>.pipe()
 
     private var emailSignal: SignalProducer<String, NoError> { return email.producer }
     private var passwordSignal: SignalProducer<String, NoError> { return password.producer }
@@ -43,8 +44,8 @@ final class SignupViewModel {
     }()
 
     func loginTapped() {
-        print("email: \(email.value)")
-        print("password: \(password.value)")
+        let text = "email: \(email.value), password: \(password.value)"
+        alertObserver.send(value: text)
     }
 
     private lazy var validationResultSignal: SignalProducer<ValidationResult, NoError> = { [unowned self] in
