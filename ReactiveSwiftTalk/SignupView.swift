@@ -27,9 +27,9 @@ final class SignupView: UIView {
     }
 
     private func bindViewModel() {
-        viewModel.emailTextSignal = email.reactive.continuousTextValues.map { $0 ?? "" }
-        viewModel.passwordTextSignal = password.reactive.continuousTextValues.map { $0 ?? "" }
-        viewModel.passwordConfirmTextSignal = passwordConfirm.reactive.continuousTextValues.map { $0 ?? "" }
+        viewModel.emailTextSignal = email.reactive.editingChangedValues
+        viewModel.passwordTextSignal = password.reactive.editingChangedValues
+        viewModel.passwordConfirmTextSignal = passwordConfirm.reactive.editingChangedValues
         errorLabel.reactive.text <~ viewModel.errorTextSignal
         signupButton.reactive.isEnabled <~ viewModel.buttonEnabledSignal
         signupButton.reactive.backgroundColor <~ viewModel.buttonColorSignal

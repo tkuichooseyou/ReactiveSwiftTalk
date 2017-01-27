@@ -10,6 +10,7 @@
 		8E4CCB361E32BF1700D15D1E /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4CCB351E32BF1700D15D1E /* SignupViewModel.swift */; };
 		8E4CCB381E32C82100D15D1E /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4CCB371E32C82100D15D1E /* String+Ext.swift */; };
 		8E6188681E32AD2100FF6937 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6188671E32AD2100FF6937 /* SignupView.swift */; };
+		8E78A5041E3B09390069D571 /* Reactive+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E78A5031E3B09390069D571 /* Reactive+Ext.swift */; };
 		8E9C6E721E32D1C2004E1B15 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9C6E711E32D1C2004E1B15 /* Validator.swift */; };
 		8E9C6E741E32D205004E1B15 /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9C6E731E32D205004E1B15 /* ValidationResult.swift */; };
 		8EDD44DD1E32A1E600788B82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDD44DC1E32A1E600788B82 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 		8E4CCB351E32BF1700D15D1E /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		8E4CCB371E32C82100D15D1E /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		8E6188671E32AD2100FF6937 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		8E78A5031E3B09390069D571 /* Reactive+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reactive+Ext.swift"; sourceTree = "<group>"; };
 		8E9C6E711E32D1C2004E1B15 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		8E9C6E731E32D205004E1B15 /* ValidationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationResult.swift; sourceTree = "<group>"; };
 		8EDD44D91E32A1E600788B82 /* ReactiveSwiftTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactiveSwiftTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 				8E6188671E32AD2100FF6937 /* SignupView.swift */,
 				8E4CCB351E32BF1700D15D1E /* SignupViewModel.swift */,
 				8E4CCB371E32C82100D15D1E /* String+Ext.swift */,
+				8E78A5031E3B09390069D571 /* Reactive+Ext.swift */,
 				8EDD44DE1E32A1E600788B82 /* ViewController.swift */,
 			);
 			path = ReactiveSwiftTalk;
@@ -347,6 +350,7 @@
 				8E9C6E741E32D205004E1B15 /* ValidationResult.swift in Sources */,
 				8EDD44DF1E32A1E600788B82 /* ViewController.swift in Sources */,
 				8E4CCB361E32BF1700D15D1E /* SignupViewModel.swift in Sources */,
+				8E78A5041E3B09390069D571 /* Reactive+Ext.swift in Sources */,
 				8E4CCB381E32C82100D15D1E /* String+Ext.swift in Sources */,
 				8E9C6E721E32D1C2004E1B15 /* Validator.swift in Sources */,
 				8EDD44DD1E32A1E600788B82 /* AppDelegate.swift in Sources */,
