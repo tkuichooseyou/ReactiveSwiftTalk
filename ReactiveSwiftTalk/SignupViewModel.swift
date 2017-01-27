@@ -11,40 +11,49 @@ import ReactiveSwift
 import Result
 
 final class SignupViewModel {
-    var emailTextSignal: Signal<String, NoError> = Signal.empty
-    var passwordTextSignal: Signal<String, NoError> = Signal.empty
-    var passwordConfirmTextSignal: Signal<String, NoError> = Signal.empty
+    let email = MutableProperty("")
+    let password = MutableProperty("")
+    let passwordConfirm = MutableProperty("")
 
-    lazy private(set) var buttonEnabledSignal: Signal<Bool, NoError> = { [unowned self] in
+    private var emailSignal: SignalProducer<String, NoError> { return email.producer }
+    private var passwordSignal: SignalProducer<String, NoError> { return password.producer }
+    private var passwordConfirmSignal: SignalProducer<String, NoError> { return passwordConfirm.producer }
+
+    lazy private(set) var buttonEnabledSignal: SignalProducer<Bool, NoError> = { [unowned self] in
         let notEmptySignals = [
-            self.emailTextSignal.textIsNotEmpty,
-            self.passwordTextSignal.textIsNotEmpty,
-            self.passwordConfirmTextSignal.textIsNotEmpty
+            self.emailSignal.textIsNotEmpty,
+            self.passwordSignal.textIsNotEmpty,
+            self.passwordConfirmSignal.textIsNotEmpty
         ]
-        return Signal
+        return SignalProducer
             .combineLatest(notEmptySignals)
             .map { $0.reduce(true) {$0 && $1} }
     }()
 
-    lazy private(set) var buttonColorSignal: Signal<UIColor, NoError> = { [unowned self] in
+    lazy private(set) var buttonColorSignal: SignalProducer<UIColor, NoError> = { [unowned self] in
         return self.buttonEnabledSignal.map { (enabled: Bool) -> UIColor in
             return (enabled ? .blue : .lightGray)
         }
     }()
 
-    lazy private(set) var errorTextSignal: Signal<String, NoError> = { [unowned self] in
+    lazy private(set) var errorTextSignal: SignalProducer<String, NoError> = { [unowned self] in
         self.buttonEnabledSignal.combineLatest(with: self.validationResultSignal).map { (buttonEnabled, validationResult) in
             return (buttonEnabled ? validationResult.errorString : "")
         }
     }()
 
-    private lazy var validationResultSignal: Signal<ValidationResult, NoError> = { [unowned self] in
+    func loginTapped() {
+        print("email: \(email.value)")
+        print("password: \(password.value)")
+    }
+
+    private lazy var validationResultSignal: SignalProducer<ValidationResult, NoError> = { [unowned self] in
         let results = [
-            self.emailTextSignal.map(Validator.validateEmail),
-            self.passwordTextSignal.map(Validator.validatePasswordLength),
-            self.passwordTextSignal.combineLatest(with: self.passwordConfirmTextSignal).map(Validator.validatePasswordsMatch)
+            self.emailSignal.map(Validator.validateEmail),
+            self.passwordSignal.map(Validator.validatePasswordLength),
+            self.passwordSignal.combineLatest(with: self.passwordConfirmSignal).map(Validator.validatePasswordsMatch)
         ]
-        return Signal
+        return SignalProducer
             .combineLatest(results)
             .map { $0.reduce(.valid) { $0.combine($1)} }
     }()

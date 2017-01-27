@@ -27,9 +27,10 @@ final class SignupView: UIView {
     }
 
     private func bindViewModel() {
-        viewModel.emailTextSignal = email.reactive.editingChangedValues
-        viewModel.passwordTextSignal = password.reactive.editingChangedValues
-        viewModel.passwordConfirmTextSignal = passwordConfirm.reactive.editingChangedValues
+        viewModel.email <~ email.reactive.editingChangedValues
+        viewModel.password <~ password.reactive.editingChangedValues
+        viewModel.passwordConfirm <~ passwordConfirm.reactive.editingChangedValues
+
         errorLabel.reactive.text <~ viewModel.errorTextSignal
         signupButton.reactive.isEnabled <~ viewModel.buttonEnabledSignal
         signupButton.reactive.backgroundColor <~ viewModel.buttonColorSignal
@@ -84,7 +85,7 @@ final class SignupView: UIView {
     }
 
     private func loginTapped() {
-        print("loginTapped")
+        viewModel.loginTapped()
     }
 
     func injected() {

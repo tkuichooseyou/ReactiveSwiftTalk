@@ -10,8 +10,8 @@ import Foundation
 import ReactiveSwift
 import Result
 
-extension SignalProtocol where Value == String, Error == NoError {
-    var textIsNotEmpty: Signal<Bool, NoError> {
+extension SignalProducerProtocol where Value == String, Error == NoError {
+    var textIsNotEmpty: SignalProducer<Bool, NoError> {
         return map { (string: String) -> Bool in
             return string != ""
         }
